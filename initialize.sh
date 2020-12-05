@@ -1,5 +1,20 @@
 #!/bin/sh
 
+#!/usr/bin/env bash
+# Command Line Tools for Xcode
+xcode-select -print-path > /dev/null
+if [ ! $? = 0 ]; then
+    xcode-select --install
+    while true
+    do
+        xcode-select -print-path > /dev/null
+        if [ $? = 0 ]; then
+            break
+        fi
+        sleep 10
+    done
+fi
+
 # 起動音を消す
 sudo nvram SystemAudioVolume=%80
 
