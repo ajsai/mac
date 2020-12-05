@@ -15,8 +15,15 @@ if [ ! $? = 0 ]; then
     done
 fi
 
+## Global
 # 起動音を消す
 sudo nvram SystemAudioVolume=%80
+# Fuキーを標準のファンクションキーとして使用
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+# 起動時に前回開いたウィンドウを開かない
+defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
+defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
+
 
 ## Finder関連
 # 隠しファイルを表示する
@@ -28,4 +35,9 @@ killall Finder
 
 ## マウス
 defaults write -g com.apple.swipescrolldirection -bool false
+
+## Menu bar
+# バッテリー残量を％表記に
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
 
